@@ -1,5 +1,5 @@
-#ifndef __DEBUG_H__
-#define __DEBUG_H__
+#ifndef __DEBUG_HPP__
+#define __DEBUG_HPP__
 #include <SFML/Graphics.hpp>
 void sleep(sf::Time, sf::Clock);
 
@@ -25,4 +25,4 @@ class Sprite {
 
     sf::RectangleShape getShape();
 };
-#endif//__DEBUG_H__
+#endif//__DEBUG_HPP__
