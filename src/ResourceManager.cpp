@@ -64,3 +64,17 @@ sf::Texture* ResourceManager::getTexture(resource_id id){
 sf::SoundBuffer* ResourceManager::getSoundBuffer(resource_id id){
 	return sounds.at(id);
 }
+
+void ResourceManager::clear(){
+	for(auto music_pair : music)
+		delete music_pair.second;
+	music.clear();
+
+	for(auto sound_pair : sounds)
+		delete sound_pair.second;
+	sounds.clear();
+
+	for(auto texture_pair : textures)
+		delete texture_pair.second;
+	textures.clear();
+}

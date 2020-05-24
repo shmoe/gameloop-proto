@@ -33,5 +33,7 @@ class ResourceManager{
 		sf::Music* getMusic(resource_id);
 		sf::Texture* getTexture(resource_id);
 		sf::SoundBuffer* getSoundBuffer(resource_id);
+
+		void clear();
 };
 #endif//__RESOURCEMANAGER_HPP__
