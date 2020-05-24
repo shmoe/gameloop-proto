@@ -1,28 +1,12 @@
 #ifndef __DEBUG_HPP__
 #define __DEBUG_HPP__
 #include <SFML/Graphics.hpp>
-void sleep(sf::Time, sf::Clock);
+#include "Actor.hpp"
 
-class Sprite {
-	float dx = 40.f;
-	float dy = 80.f;
-	float w = 100.f;
-	float h = 60.f;
-
-	float x;
-	float y;
-	short* max_x;
-	short* max_y;
-	sf::RectangleShape rect;
-	sf::RectangleShape extrapolated_rect;
-	
+class Tile : public Actor {
 	public:
-	Sprite(short* win_width, short* win_height);
-
-	void update();
-
-	sf::RectangleShape getShape(float steps_ahead);
-
-    sf::RectangleShape getShape();
+		Tile(sf::Texture* sprite, float x, float y);
+		sf::Sprite* getCurrentSprite(float steps_ahead);
+		void update();
 };
 #endif//__DEBUG_HPP__
