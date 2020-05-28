@@ -8,8 +8,10 @@
 
 typedef size_t resource_id;
 
-//the resource manager is a Meyer singleton, which is modern C++ that I don't really understand
-//apparently it's thread-safe
+/**
+ * the resource manager is a Meyer singleton, which is modern C++ that I don't really understand
+ * apparently it's thread-safe
+ */
 class ResourceManager{
 	private:
 		ResourceManager();
