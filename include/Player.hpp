@@ -20,6 +20,10 @@ enum PlayerState{
 	ENGUARDE_ATTACKING,
 	EXPRESSO_FALLING
 };
+
+/**
+ * Class for the player character
+ */
 class Player : public Actor {
 	private:
 		PlayerState state;									//the player character's current state
