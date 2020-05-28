@@ -1,5 +1,9 @@
 #include "Actor.hpp"
 
+sf::FloatRect Actor::getBounds(){
+	return current_sprite.getGlobalBounds();
+}
+
 void Actor::setZ(size_t z_index){
 	z = z_index;
 }

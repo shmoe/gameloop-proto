@@ -1,14 +1,14 @@
 #ifndef __ACTOR_HPP__
 #define __ACTOR_HPP__
 
-#include <SFML/Graphics.hpp>
+#include "Rectangular.hpp"
 #include "Vector.hpp"
 
 /**
  * defines an Actor in the scene
  * Abstract Base Class
  */
-class Actor {
+class Actor : public Rectangular {
 	protected:
 		size_t z;													//Actor's position along the z-axis
 		Vector velocity;											//Actor's velocity
@@ -29,6 +29,7 @@ class Actor {
 		virtual void update() = 0;									//update the actor by one step of the physics engine and the sprite by one
 																		//frame of animation
 										
+		virtual sf::FloatRect getBounds();							//get the bounding box for the Actor
 
 		//expose internals for collisions and other external interactions
 		void move(Vector);											//translate the Actor, relative to it's current position in the world
