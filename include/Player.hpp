@@ -31,7 +31,7 @@ class Player : public Actor {
 		void setState(PlayerState state);					//set the player character's current state
 		PlayerState getState();								//get the player character's current state
 
-		void update();										//update the player character by one step of the physics engine (do not use)
+		virtual void update() override;						//update the player character by one step of the physics engine (do not use)
 		void update(std::vector<bool> keys);				//update the player character by one step of the physics engine and the sprite by one
 																//frame of animation
 };

@@ -8,6 +8,6 @@
  */
 class Rectangular {
 	public:
-		virtual sf::FloatRect getBounds() = 0;
+		virtual sf::FloatRect getBounds() const = 0;
 };
 #endif//__RECTANGULAR_HPP__
