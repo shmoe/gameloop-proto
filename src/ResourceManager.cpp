@@ -55,13 +55,13 @@ void ResourceManager::deleteSoundBuffer(resource_id id){
 	sounds.erase(id);
 }
 
-sf::Music* ResourceManager::getMusic(resource_id id){
+sf::Music* ResourceManager::getMusic(resource_id id) const{
 	return music.at(id);
 }
-sf::Texture* ResourceManager::getTexture(resource_id id){
+sf::Texture* ResourceManager::getTexture(resource_id id) const{
 	return textures.at(id);
 }
-sf::SoundBuffer* ResourceManager::getSoundBuffer(resource_id id){
+sf::SoundBuffer* ResourceManager::getSoundBuffer(resource_id id) const{
 	return sounds.at(id);
 }
 

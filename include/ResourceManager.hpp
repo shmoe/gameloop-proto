@@ -32,9 +32,9 @@ class ResourceManager{
 		void deleteTexture(resource_id);
 		void deleteSoundBuffer(resource_id);
 
-		sf::Music* getMusic(resource_id);
-		sf::Texture* getTexture(resource_id);
-		sf::SoundBuffer* getSoundBuffer(resource_id);
+		sf::Music* getMusic(resource_id) const;
+		sf::Texture* getTexture(resource_id) const;
+		sf::SoundBuffer* getSoundBuffer(resource_id) const;
 
 		void clear();
 };

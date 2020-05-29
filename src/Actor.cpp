@@ -1,13 +1,13 @@
 #include "Actor.hpp"
 
-sf::FloatRect Actor::getBounds(){
+sf::FloatRect Actor::getBounds() const {
 	return current_sprite.getGlobalBounds();
 }
 
 void Actor::setZ(size_t z_index){
 	z = z_index;
 }
-size_t Actor::getZ(){
+size_t Actor::getZ() const{
 	return z;
 }
 
@@ -15,7 +15,7 @@ bool Actor::operator<(const Actor& a){
 	return this->z < a.z;
 }
 
-sf::Sprite* Actor::getSprite(){
+sf::Sprite* Actor::getSprite() const{
 	return &current_sprite;
 }
 
@@ -33,20 +33,20 @@ void Actor::scale(sf::Vector2f factor){
 	current_sprite.scale(factor);
 }
 
-Vector Actor::getVelocity(){
+Vector Actor::getVelocity() const{
 	return velocity;
 }
 
-Vector Actor::getAcceleration(){
+Vector Actor::getAcceleration() const{
 	return acceleration;
 }
 
-float Actor::getRotationalVelocity(){
+float Actor::getRotationalVelocity() const{
 	//stub
 	return 0.0;
 }
 
-float Actor::getRotationalAcceleration(){
+float Actor::getRotationalAcceleration() const{
 	//stub
 	return 0.0;
 }
