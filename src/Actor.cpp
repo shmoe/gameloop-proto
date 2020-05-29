@@ -15,11 +15,11 @@ bool Actor::operator<(const Actor& a){
 	return this->z < a.z;
 }
 
-sf::Sprite* Actor::getSprite() const{
+const sf::Sprite* Actor::getSprite() const{
 	return &current_sprite;
 }
 
-sf::Sprite* Actor::getCurrentSprite(float steps_ahead){
+const sf::Sprite* Actor::getCurrentSprite(float steps_ahead){
 	next_sprite = sf::Sprite(current_sprite);
 	next_sprite.move(steps_ahead * velocity.getX(), steps_ahead * velocity.getY());
 	return &next_sprite;
