@@ -13,3 +13,7 @@ const sf::Sprite* Tile::getCurrentSprite(float steps_ahead) {
 void Tile::update(){
 
 }
+
+bool Tile::isStatic() const {
+	return true;
+}
