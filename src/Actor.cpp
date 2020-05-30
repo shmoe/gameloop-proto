@@ -7,7 +7,7 @@ sf::FloatRect Actor::getBounds() const {
 void Actor::setZ(size_t z_index){
 	z = z_index;
 }
-size_t Actor::getZ() const{
+size_t Actor::getZ() const {
 	return z;
 }
 
@@ -15,7 +15,7 @@ bool Actor::operator<(const Actor& a){
 	return this->z < a.z;
 }
 
-const sf::Sprite* Actor::getSprite() const{
+const sf::Sprite* Actor::getSprite() const {
 	return &current_sprite;
 }
 
@@ -33,20 +33,20 @@ void Actor::scale(sf::Vector2f factor){
 	current_sprite.scale(factor);
 }
 
-Vector Actor::getVelocity() const{
+Vector Actor::getVelocity() const {
 	return velocity;
 }
 
-Vector Actor::getAcceleration() const{
+Vector Actor::getAcceleration() const {
 	return acceleration;
 }
 
-float Actor::getRotationalVelocity() const{
+float Actor::getRotationalVelocity() const {
 	//stub
 	return 0.0;
 }
 
-float Actor::getRotationalAcceleration() const{
+float Actor::getRotationalAcceleration() const {
 	//stub
 	return 0.0;
 }

@@ -6,7 +6,7 @@ Tile::Tile(sf::Texture* sprite, float x, float y){
 	z = 0;
 }
 
-sf::Sprite* Tile::getCurrentSprite(float steps_ahead){
+const sf::Sprite* Tile::getCurrentSprite(float steps_ahead) {
 	return getSprite();
 }
 

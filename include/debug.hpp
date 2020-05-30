@@ -6,7 +6,7 @@
 class Tile : public Actor {
 	public:
 		Tile(sf::Texture* sprite, float x, float y);
-		sf::Sprite* getCurrentSprite(float steps_ahead);
+		virtual const sf::Sprite* getCurrentSprite(float steps_ahead);
 		void update();
 };
 #endif//__DEBUG_HPP__
