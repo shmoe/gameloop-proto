@@ -28,6 +28,8 @@ class Actor : public Rectangular {
 	
 		virtual void update() = 0;										//update the actor by one step of the physics engine and the sprite by one
 																			//frame of animation
+
+		virtual bool isStatic() const = 0;									//return whether the actor will ever move or change/rotate its bounds
 										
 		virtual sf::FloatRect getBounds() const override;				//get the bounding box for the Actor
 
