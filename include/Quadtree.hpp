@@ -49,9 +49,9 @@ class Quadtree : public Rectangular {
 
 		virtual sf::FloatRect getBounds() const override;					//Get the bounding box for this node
 
-		Quadtree** getChildren() const;										//debug, expose child nodes for testing reasons
-		std::set<Rectangular*> getBucket() const;							//debug, expose bucket for rendering
-
 		void clear();														//Completely clear this node and all of its children
+
+		friend void getLeaves(Quadtree*, std::vector<Quadtree*>& );			//for debugging, fills the given vector with all terminal
+																				//nodes of the given parent
 };
 #endif//__QUADTREE_HPP__

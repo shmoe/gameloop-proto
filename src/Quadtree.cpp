@@ -161,10 +161,13 @@ void Quadtree::clear(){
 	}
 }
 
-Quadtree** Quadtree::getChildren() const {
-	return (Quadtree**) children;
-}
+void getLeaves(Quadtree* parent, std::vector<Quadtree*>& children){
+	if(parent->children[0] == nullptr){
+		children.emplace_back(parent);//place leaf
+		return; //exit condition
+	}
 
-std::set<Rectangular*> Quadtree::getBucket() const{
-	return bucket;
+	for(int i = 0; i < 4; i++){
+		getLeaves(parent->children[i], children);
+	}
 }
