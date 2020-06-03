@@ -129,7 +129,7 @@ std::set<Rectangular*> Quadtree::search(const sf::FloatRect& bounds){
 void Quadtree::search(const sf::FloatRect& bounds, std::set<Rectangular*>& possibleOverlaps){
 	possibleOverlaps.insert(bucket.begin(), bucket.end());
 
-	if(children[0] == nullptr){
+	if(children[0] != nullptr){
 		int index = getIndex(bounds);
 
 		if(index == -1){

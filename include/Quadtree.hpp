@@ -51,7 +51,7 @@ class Quadtree : public Rectangular {
 
 		void clear();														//Completely clear this node and all of its children
 
-		friend void getLeaves(Quadtree*, std::vector<Quadtree*>& );			//for debugging, fills the given vector with all terminal
+		friend void getLeaves(Quadtree*, std::vector<Quadtree*>&);			//for debugging, fills the given vector with all terminal
 																				//nodes of the given parent
 };
 #endif//__QUADTREE_HPP__
