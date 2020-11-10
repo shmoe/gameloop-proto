@@ -12,5 +12,5 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CXX_FLAGS) $(OBJECTS) $(LDFLAGS) -o $(EXECUTABLE)
 
 clean:
-	rm -f *.o
+	rm -f *.o $(EXECUTABLE)
 .PHONY=clean
