@@ -1,7 +1,10 @@
 #include "Scene.hpp"
 
-Scene::Scene(sf::RenderWindow* window){
+Scene::Scene(sf::RenderWindow* window) : quadtree(Quadtree(sf::FloatRect(0,0,0,0),0,0)){
 	this->window = window;
+	sf::Vector2u size = window->getSize();
+
+	quadtree = Quadtree(sf::FloatRect(0,0,size.x,size.y), 4, 10);
 }
 
 void Scene::setScaleFactor(sf::Vector2f scale_factor){
@@ -29,9 +32,24 @@ std::set<Actor*> Scene::getVisibleActors(){
 	return getActors();
 }
 
+Quadtree* Scene::getQuadtree(){
+	return &quadtree;
+}
+
 void Scene::update(){
-	for(auto actor : actors)
+	for(Actor* actor : actors){
 		actor->update();
+		if( not (actor->isStatic()) ){
+			quadtree.remove(actor);
+			quadtree.insert(actor);
+		}
+	}
+	for(Actor* actor : actors) {
+		std::set<Rectangular*> broad_collisions = quadtree.search(actor->getBounds());
+		for(Rectangular* rect : broad_collisions){
+			//TODO resolve pixel perfect collisions
+		}
+	}
 }
 
 void Scene::updateVisible(){

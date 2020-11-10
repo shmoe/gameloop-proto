@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <set>
 #include "Actor.hpp"
+#include "Quadtree.hpp"
 
 /**
  * holds all of the Actors in the current world
@@ -12,9 +13,10 @@
 class Scene {
 	private:
 		sf::RenderWindow* window;				//pointer to the RenderWindow
-		sf::Transform viewport_transform;		//offset of the viewport from world origin
 		sf::Vector2f scale_factor;				//scale factor for the sprites relative to the viewport size
 		std::set<Actor*> actors;				//set of actors, sorted by z-axis postion
+
+		Quadtree quadtree;						//for broad-phase collision detection
 	public:
 		Scene(sf::RenderWindow*);				//default constructor
 
@@ -26,6 +28,8 @@ class Scene {
 
 		std::set<Actor*> getActors();			//get all actors in the scene
 		std::set<Actor*> getVisibleActors();	//get all actors within the viewport
+
+		Quadtree* getQuadtree();				//return a reference to the Scene's quadtree
 
 		void update();							//update all actors in the scene by one step of the physics engine
 		void updateVisible();					//update all actors within the viewport by one step of the physics engine
