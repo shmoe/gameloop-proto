@@ -18,6 +18,7 @@ class Scene {
 
 		Quadtree quadtree;						//for broad-phase collision detection
 	public:
+		Scene()=delete;							//a Scene should not exist without bounds
 		Scene(sf::RenderWindow*);				//default constructor
 
 		void setScaleFactor(sf::Vector2f);		//set current viewport scale factor
