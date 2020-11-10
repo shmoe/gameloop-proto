@@ -1,5 +1,5 @@
 CXX=g++
-CXX_FLAGS=-g
+CXX_FLAGS=
 
 BUILD_DIR=../build
 INCLUDES=-I../include
@@ -7,12 +7,8 @@ INCLUDES=-I../include
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(subst .cpp,.o, $(SOURCES))
 
-all: objects
-	cd $(BUILD_DIR) && $(MAKE)
-.PHONY=all
-
 objects: $(BUILD_DIR)/$(OBJECTS)
 .PHONY=objects
 
 %.o: %.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDES) -c $< -o $(BUILD_DIR)/$@
+	$(CXX) $(DEBUG) $(CXX_FLAGS) $(INCLUDES) -c $< -o $(BUILD_DIR)/$@

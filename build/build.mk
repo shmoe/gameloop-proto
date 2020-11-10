@@ -5,8 +5,8 @@ LDFLAGS=-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 EXECUTABLE=dk-country
 OBJECTS=$(wildcard *.o)
 
-all: $(EXECUTABLE)
-.PHONY=all
+executable: $(EXECUTABLE)
+.PHONY=executable
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CXX_FLAGS) $(OBJECTS) $(LDFLAGS) -o $(EXECUTABLE)

@@ -1,14 +1,35 @@
+SEP=-------------------------------------
+
 SRC_DIR=src
 BUILD_DIR=build
 
-all: objects
-	cd $(SRC_DIR) && $(MAKE)
+all: objects executable
 .PHONY=all
 
+executable:
+	@echo "Building executable..."
+	@echo $(SEP)
+	$(MAKE) -C $(BUILD_DIR) -f $(BUILD_DIR).mk executable
+	@echo "Finished building executable.."
+	@echo $(SEP)
+.PHONY=executable
+
 objects:
-	cd $(SRC_DIR) && $(MAKE) objects
+	@echo "Building object files..."
+	@echo $(SEP)
+	$(MAKE) -C $(SRC_DIR) -f $(SRC_DIR).mk objects DEBUG=$(DEBUG)
+	@echo "Finished building object files..."
+	@echo $(SEP)
 .PHONY=objects
 
+debug: DEBUG=-g
+debug: all
+.PHONY=debug
+
 clean:
-	cd $(BUILD_DIR) && $(MAKE) clean
+	@echo "Cleaning build directory..."
+	@echo $(SEP)
+	$(MAKE) -C $(BUILD_DIR) -f $(BUILD_DIR).mk clean
+	@echo "Finished cleaning..."
+	@echo $(SEP)
 .PHONY=clean
