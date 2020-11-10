@@ -66,7 +66,7 @@ void Scene::render(){
 	std::set<Actor*> toRender = getVisibleActors();
 
 	for(auto actor : toRender)
-		window->draw( *(actor->getSprite()), viewport_transform.getInverse().scale(scale_factor) );
+		window->draw( *(actor->getSprite()) );
 
 }
 
@@ -74,6 +74,6 @@ void Scene::render(float steps_ahead){
 	std::set<Actor*> toRender = getVisibleActors();
 
 	for(auto actor : toRender)
-		window->draw( *(actor->getCurrentSprite(steps_ahead)), viewport_transform.getInverse().scale(scale_factor) );
+		window->draw( *(actor->getCurrentSprite(steps_ahead)) );
 
 }
