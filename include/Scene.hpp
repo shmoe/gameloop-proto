@@ -13,7 +13,7 @@
 class Scene {
 	private:
 		sf::RenderWindow* window;				//pointer to the RenderWindow
-		sf::Vector2f scale_factor;				//scale factor for the sprites relative to the viewport size
+		sf::Vector2f scale_factor;				//scale factor for the sprites relative to the viewport size; unused
 		std::set<Actor*> actors;				//set of actors, sorted by z-axis postion
 
 		Quadtree quadtree;						//for broad-phase collision detection
