@@ -29,6 +29,15 @@
         },
         {
             "type": "shell",
+            "label": "make debug",
+            "command": "/usr/bin/make",
+            "args": [
+                "debug"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
             "label": "make clean",
             "command": "/usr/bin/make",
             "args": [
