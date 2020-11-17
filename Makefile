@@ -1,6 +1,4 @@
 SEP=-------------------------------------
-
-SRC_DIR=src
 BUILD_DIR=build
 
 all: objects executable
@@ -17,7 +15,7 @@ executable:
 objects:
 	@echo "Building object files..."
 	@echo $(SEP)
-	$(MAKE) -C $(SRC_DIR) -f $(SRC_DIR).mk objects DEBUG=$(DEBUG)
+	$(MAKE) -C $(BUILD_DIR) -f $(BUILD_DIR).mk objects DEBUG=$(DEBUG)
 	@echo "Finished building object files..."
 	@echo $(SEP)
 .PHONY=objects
