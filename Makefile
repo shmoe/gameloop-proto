@@ -1,4 +1,6 @@
 SEP=-------------------------------------
+
+SRC_DIR=src
 BUILD_DIR=build
 
 all: objects executable
