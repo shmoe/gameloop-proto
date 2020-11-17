@@ -72,6 +72,7 @@ void Scene::updateVisible(float tolerance){
 }
 
 void Scene::render(){
+	//render objects within scene
 	camera.render();
 
 	std::set<Actor*> toRender = getVisibleActors();
@@ -79,9 +80,12 @@ void Scene::render(){
 	for(auto actor : toRender)
 		window->draw( *(actor->getSprite()) );
 
+	//return to default view
+	window->setView(window->getDefaultView());
 }
 
 void Scene::render(float steps_ahead){
+	//render objects within scene
 	camera.render(steps_ahead);
 
 	std::set<Actor*> toRender = getVisibleActors();
@@ -89,4 +93,6 @@ void Scene::render(float steps_ahead){
 	for(auto actor : toRender)
 		window->draw( *(actor->getCurrentSprite(steps_ahead)) );
 
+	//return to default view
+	window->setView(window->getDefaultView());
 }
