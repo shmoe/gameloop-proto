@@ -1,10 +1,12 @@
 #include "Scene.hpp"
 
-Scene::Scene(sf::RenderWindow* window) : quadtree(Quadtree(sf::FloatRect(0,0,0,0),0,0)){
+Scene::Scene(sf::RenderWindow* window) : quadtree(Quadtree(sf::FloatRect(0,0,0,0),0,0)), camera(window) {
 	this->window = window;
 	sf::Vector2u size = window->getSize();
 
 	quadtree = Quadtree(sf::FloatRect(0,0,size.x,size.y), 4, 10);
+	
+	camera.render();
 }
 
 void Scene::setScaleFactor(sf::Vector2f scale_factor){
@@ -36,6 +38,11 @@ Quadtree* Scene::getQuadtree(){
 	return &quadtree;
 }
 
+void Scene::lockCamera(Actor* actor){
+	camera.lock(actor);
+}
+
+
 void Scene::update(){
 	for(Actor* actor : actors){
 		actor->update();
@@ -50,19 +57,23 @@ void Scene::update(){
 			//TODO resolve pixel perfect collisions
 		}
 	}
+	camera.update();//update view based on new Actor positions
+					//only needs to happen when locked actor moves. consider event trigger?
 }
 
 void Scene::updateVisible(){
-	//TODO
+	//TODO update only actors within camera's view
 	update();
 }
 
 void Scene::updateVisible(float tolerance){
-	//TODO
+	//TODO update only actors within tolerance of camera's view
 	update();
 }
 
 void Scene::render(){
+	camera.render();
+
 	std::set<Actor*> toRender = getVisibleActors();
 
 	for(auto actor : toRender)
@@ -71,6 +82,8 @@ void Scene::render(){
 }
 
 void Scene::render(float steps_ahead){
+	camera.render(steps_ahead);
+
 	std::set<Actor*> toRender = getVisibleActors();
 
 	for(auto actor : toRender)

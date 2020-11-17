@@ -5,6 +5,7 @@
 #include <set>
 #include "Actor.hpp"
 #include "Quadtree.hpp"
+#include "Camera.hpp"
 
 /**
  * holds all of the Actors in the current world
@@ -17,6 +18,7 @@ class Scene {
 		std::set<Actor*> actors;				//set of actors, sorted by z-axis postion
 
 		Quadtree quadtree;						//for broad-phase collision detection
+		Camera camera;							//locks onto an Actor and moves the window's view based on their movement
 	public:
 		Scene()=delete;							//a Scene should not exist without bounds
 		Scene(sf::RenderWindow*);				//default constructor
@@ -31,6 +33,8 @@ class Scene {
 		std::set<Actor*> getVisibleActors();	//get all actors within the viewport
 
 		Quadtree* getQuadtree();				//return a reference to the Scene's quadtree
+
+		void lockCamera(Actor* actor);			//lock camera movement to given Actor
 
 		void update();							//update all actors in the scene by one step of the physics engine
 		void updateVisible();					//update all actors within the viewport by one step of the physics engine
