@@ -50,3 +50,11 @@ float Actor::getRotationalAcceleration() const {
 	//stub
 	return 0.0;
 }
+
+void Actor::setVelocity(Vector velocity){
+	this->velocity = velocity;
+}
+
+void Actor::setAcceleration(Vector acceleration){
+	this->acceleration = acceleration;
+}
