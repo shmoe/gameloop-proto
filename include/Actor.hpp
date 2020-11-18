@@ -40,5 +40,8 @@ class Actor : public Rectangular {
 		Vector getAcceleration() const;									//return the current velocity of the Actor as a polar vector
 		float getRotationalVelocity() const;							//probably not relevant
 		float getRotationalAcceleration() const;						//probably not relevant
+
+		void setVelocity(Vector velocity);								//set velocity
+		void setAcceleration(Vector acceleration);						//set acceleration
 };
 #endif//__ACTOR_HPP__
