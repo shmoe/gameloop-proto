@@ -43,6 +43,9 @@ class Scene {
 		void render();							//render the part of the scene visible from the viewport
 		void render(float steps_ahead);			//render the part of the scene visible from the viewport, 
 													//interpolated *steps_ahead* physics engine steps in the future
+
+		void resizeViewport(float aspect_ratio);//shrink viewport horizontally  to fit ratio
+
 };
 
 #endif//__SCENE_HPP__
