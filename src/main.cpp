@@ -30,7 +30,7 @@ int main() {
 					break;
 
 				case sf::Event::Resized:
-					//TODO
+					scene.resizeViewport(WIN_WIDTH / float(WIN_HEIGHT));
 					break;
 
 				default:

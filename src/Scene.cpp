@@ -57,7 +57,7 @@ void Scene::update(){
 			//TODO resolve pixel perfect collisions
 		}
 	}
-	camera.update();//update view based on new Actor positions
+	camera.update();//update view based on new locked Actor position
 					//only needs to happen when locked actor moves. consider event trigger?
 }
 
@@ -72,6 +72,8 @@ void Scene::updateVisible(float tolerance){
 }
 
 void Scene::render(){
+	sf::View oldView = window->getView();
+
 	//render objects within scene
 	camera.render();
 
@@ -80,19 +82,33 @@ void Scene::render(){
 	for(auto actor : toRender)
 		window->draw( *(actor->getSprite()) );
 
-	//return to default view
-	window->setView(window->getDefaultView());
+	//return to old view
+	window->setView(oldView);
 }
 
 void Scene::render(float steps_ahead){
+	sf::View oldView(window->getView());
+
 	//render objects within scene
 	camera.render(steps_ahead);
+
+//debug viewport
+	sf::RectangleShape bg;
+	bg.setFillColor(sf::Color::White);
+	bg.setSize(sf::Vector2f(float(window->getSize().x), float(window->getSize().y)));
+	bg.setPosition(0.0f, 0.0f);
+	window->draw(bg);
+//
 
 	std::set<Actor*> toRender = getVisibleActors();
 
 	for(auto actor : toRender)
 		window->draw( *(actor->getCurrentSprite(steps_ahead)) );
 
-	//return to default view
-	window->setView(window->getDefaultView());
+	//return to old view
+	window->setView(oldView);
+}
+
+void Scene::resizeViewport(float aspect_ratio){
+	camera.resizeViewport(aspect_ratio);
 }
