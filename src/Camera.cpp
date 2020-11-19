@@ -48,27 +48,27 @@ void Camera::update(){
 }
 
 void Camera::resizeViewport(float aspect_ratio){
-	//shrink viewport horizontally  to fit ratio (vertical black bars)
+	//shrink viewport to fit ratio (letterboxing)
+    float windowRatio = window->getSize().x / (float) window->getSize().y;
+    float viewRatio = view.getSize().x / (float) view.getSize().y;
+    float width_scale_factor = 1;
+    float height_scale_factor = 1;
+    float offset_width_scale_factor = 0;
+    float offset_height_scale_factor = 0;
 
-	float oldWidth = window->getSize().x;
-	float height = window->getSize().y;
+    if (windowRatio > viewRatio) {
+        width_scale_factor = viewRatio / windowRatio;
+        offset_width_scale_factor = (1 - width_scale_factor) / 2.f;
+    }
 
-	if(oldWidth / height != aspect_ratio){
-		// width / height = ratio
-		// width = ratio * height
-		// newWidth = ratio * height
-		float newWidth = height * aspect_ratio;
+    else {
+        height_scale_factor = windowRatio / viewRatio;
+        offset_height_scale_factor = (1 - height_scale_factor) / 2.f;
+    }
 
-		// width_offset = (old_width - newWidth) / 2
-		// width_offset_scale_factor = width / width_offset
-		// 							 = width / ((old_width - newWidth) / 2)
-		//							 = 2 * width / (old_width - newWidth)				
-		float width_offset_scale_factor = (oldWidth - newWidth) / (2 * newWidth);
-
-		// width_scale_factor = width / old_width
-		float width_scale_factor = newWidth / oldWidth;
-
-		view.setViewport(sf::FloatRect(width_offset_scale_factor, 0.0f, width_scale_factor, 1.0f));
-		window->setView(view);
-	}
+    view.setViewport( sf::FloatRect(
+									offset_width_scale_factor, offset_height_scale_factor,
+									width_scale_factor, height_scale_factor
+								) );
+	window->setView(view);
 }
