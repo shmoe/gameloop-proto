@@ -19,6 +19,8 @@ class Scene {
 
 		Quadtree quadtree;						//for broad-phase collision detection
 		Camera camera;							//locks onto an Actor and moves the window's view based on their movement
+
+		void update(std::set<Actor*> actors_to_update);	//proto-update method
 	public:
 		Scene()=delete;							//a Scene should not exist without bounds
 		Scene(sf::RenderWindow*);				//default constructor

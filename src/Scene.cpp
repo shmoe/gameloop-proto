@@ -42,9 +42,8 @@ void Scene::lockCamera(Actor* actor){
 	camera.lock(actor);
 }
 
-
-void Scene::update(){
-	for(Actor* actor : actors){
+void Scene::update(std::set<Actor*> actors_to_update){
+	for(Actor* actor : actors_to_update){
 		actor->update();
 		if( not (actor->isStatic()) ){
 			quadtree.remove(actor);
@@ -61,14 +60,19 @@ void Scene::update(){
 					//only needs to happen when locked actor moves. consider event trigger?
 }
 
+
+void Scene::update(){
+	update(actors);
+}
+
 void Scene::updateVisible(){
 	//TODO update only actors within camera's view
-	update();
+	update(actors);
 }
 
 void Scene::updateVisible(float tolerance){
 	//TODO update only actors within tolerance of camera's view
-	update();
+	update(actors);
 }
 
 void Scene::render(){
@@ -92,13 +96,16 @@ void Scene::render(float steps_ahead){
 	//render objects within scene
 	camera.render(steps_ahead);
 
-//debug viewport
+//debug
+	//clear view to white
+	sf::FloatRect cam_bounds = camera.getBounds();
 	sf::RectangleShape bg;
 	bg.setFillColor(sf::Color::White);
-	bg.setSize(sf::Vector2f(float(window->getSize().x), float(window->getSize().y)));
-	bg.setPosition(0.0f, 0.0f);
+	bg.setSize(sf::Vector2f(cam_bounds.width + 60, cam_bounds.height + 60));
+	bg.setPosition(sf::Vector2f(cam_bounds.left - 30, cam_bounds.top - 30));
 	window->draw(bg);
 //
+
 
 	std::set<Actor*> toRender = getVisibleActors();
 
