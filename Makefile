@@ -1,4 +1,3 @@
-SEP=-------------------------------------
 BUILD_DIR=build
 
 all: objects executable
