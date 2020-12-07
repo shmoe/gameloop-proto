@@ -1,18 +1,19 @@
 #ifndef __CONTROLLER_HPP__
 #define __CONTROLLER_HPP__
 
+#include <map>
+#include <string>
 #include "Command.hpp"
+
 
 /**
  * Bind different Commands to the inputs of each "controller."
- * Can be used to 
  */
-
 class Controller {
 	public:
 		Controller();
 
-		Command* getCommand();					//TODO determine whether to use events or direct queries
+		Command* getCommand();											//TODO determine whether to use events or direct queries
 
 		void setButtonUp(Command* command);
 		void setButtonDown(Command* command);
